@@ -71,6 +71,7 @@ public class GameManager : MonoBehaviour
         }
 
         score = 0;
+
         SaveScore();
     }
 
@@ -87,8 +88,10 @@ public class GameManager : MonoBehaviour
         SaveData data = new SaveData();
         data.namePlayerBest = namePlayerBest;
         data.maxScore = maxScore;
-        string json = JsonUtility.ToJson(data);
+
+        string json = JsonUtility.ToJson(data,true);
         File.WriteAllText("Assets/savescore.json", json);
+
     }
 
     public void LoadScore()

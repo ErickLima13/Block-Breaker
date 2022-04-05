@@ -865,7 +865,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 100
+      scalar: 200
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -4932,6 +4932,7 @@ MonoBehaviour:
   explosionParticle: {fileID: 1929434509}
   audioSource: {fileID: 2084842655809339886}
   damage: {fileID: 8300000, guid: edc5e91d392338845a9a600be33efd80, type: 3}
+  spriteRenderer: {fileID: 8446981225330823365}
 --- !u!82 &2084842655809339886
 AudioSource:
   m_ObjectHideFlags: 0
@@ -4941,7 +4942,7 @@ AudioSource:
   m_GameObject: {fileID: 8446981225330823387}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -7258706510271882292, guid: 2e8202e34c0f8de4b92c9645f7b7f06e, type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1

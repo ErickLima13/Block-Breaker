@@ -10,6 +10,8 @@ public class Ball : MonoBehaviour
 
     public GameObject player;
 
+    [SerializeField] private GameObject startGame;
+
     private void Initialization()
     {
         ballRb = GetComponent<Rigidbody2D>();
@@ -39,14 +41,16 @@ public class Ball : MonoBehaviour
 
     private void OnDisable()
     {
-        Vector3 pos = new Vector3(player.transform.position.x, -3.50f, 0);
+        Vector3 pos = new Vector3(0.04f, -3.5f, 0);
         transform.position = pos;
+        startGame.SetActive(true);
     }
 
     private void OnEnable()
     {
-        Vector3 pos = new Vector3(player.transform.position.x, -3.50f, 0);
+        Vector3 pos = new Vector3(player.transform.position.x,-3.5f, 0);
         transform.position = pos;
         ballRb.velocity = Vector2.up * speed;
+        startGame.SetActive(false);
     }
 }

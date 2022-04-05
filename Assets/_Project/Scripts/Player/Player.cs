@@ -7,6 +7,8 @@ public class Player : MonoBehaviour
     [Range(0, 20)] public float speed;
 
     public GameObject ball;
+
+   
     
     private void Initialization()
     {
@@ -21,14 +23,17 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Movement();
-        NewBall();
+        if (!GameManager.instance.isGameOver)
+        {
+            Movement();
+            NewBall();
+        }
+        
     }
 
     private void Movement()
     {
         float horizontalInput = Input.GetAxisRaw("Horizontal");
-
         transform.Translate(horizontalInput * speed * Time.deltaTime * Vector2.right);
 
     }
@@ -38,6 +43,7 @@ public class Player : MonoBehaviour
         if (Input.GetButtonDown("Jump"))
         {
             ball.SetActive(true);
+            
         }
     }
 }

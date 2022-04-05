@@ -11,10 +11,16 @@ public class Brick : MonoBehaviour
     public AudioSource audioSource;
     public AudioClip damage;
 
+    [SerializeField] private SpriteRenderer spriteRenderer;
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        ParticleSystem ps = explosionParticle.GetComponent<ParticleSystem>();
+        ParticleSystem.MainModule psmain = ps.main;
+        psmain.startColor = spriteRenderer.color;
         explosionParticle.Play(true);
         audioSource.PlayOneShot(damage);
+        collision.gameObject.GetComponent<SpriteRenderer>().color = spriteRenderer.color;
         Invoke(nameof(Explosion), 0.3f);
         
     }
