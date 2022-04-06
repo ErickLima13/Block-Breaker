@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using UnityEngine.SceneManagement;
 
 public class Controller : MonoBehaviour
 {
     public GameObject brick;
     public GameObject ball;
+    public GameObject powerUp;
 
     public Transform[] spawnerBricks;
 
@@ -18,16 +18,17 @@ public class Controller : MonoBehaviour
     public float width;
     public float distance;
 
-    public int lines;
-    public int columns;
+    public float powerUpTime;
 
-    public Brick brickPrefab;
-    public int[] valuesColumn;
-    public Color[] colorsColumn;
+    public int level = 1;
+
+    public TextMeshProUGUI levelText;
+
+    public int lines;
 
     private void Initialization()
     {
-
+        powerUpTime = 10f;
         distance = 0.10f;
         width = brick.transform.localScale.x;
         SpawnBricks();
@@ -54,10 +55,21 @@ public class Controller : MonoBehaviour
     {
         bricks = GameObject.FindGameObjectsWithTag("Brick");
 
+        levelText.text =  "Level : " + level.ToString();
+
+        powerUpTime -= Time.deltaTime;
+
+        if(powerUpTime <= 0)
+        {
+            powerUp.SetActive(true);
+            powerUpTime = 10f * level;
+        }
+
         if (bricks.Length == 0)
         {
             ball.SetActive(false);
             ball.GetComponent<Ball>().speed += 0.5f;
+            level++;
 
             for (int i = 0; i < bricksList.Count; i++)
             {
@@ -74,39 +86,6 @@ public class Controller : MonoBehaviour
 
     private void SpawnBricks()
     {
-        //for (int i = 0; i < lines; i++)
-        //{
-        //    brick.GetComponent<SpriteRenderer>().color = Color.cyan;
-        //    spawnerBricks[0].position = new Vector3(spawnerBricks[0].position.x + width + distance, spawnerBricks[0].position.y, spawnerBricks[0].position.z);
-        //    Instantiate(brick, spawnerBricks[0].position, Quaternion.identity);
-        //    brick.GetComponent<Brick>().value = 20;
-        //}
-
-        //for (int i = 0; i < lines; i++)
-        //{
-        //    brick.GetComponent<SpriteRenderer>().color = Color.blue;
-        //    spawnerBricks[1].position = new Vector3(spawnerBricks[1].position.x + width + distance, spawnerBricks[1].position.y, spawnerBricks[1].position.z);
-        //    Instantiate(brick, spawnerBricks[1].position, Quaternion.identity);
-        //    brick.GetComponent<Brick>().value = 15;
-        //}
-
-        //for (int x = 0; x < lines; x++)
-        //{
-        //    brick.GetComponent<SpriteRenderer>().color = Color.magenta;
-        //    spawnerBricks[2].position = new Vector3(spawnerBricks[2].position.x + width + distance, spawnerBricks[2].position.y, spawnerBricks[2].position.z);
-        //    Instantiate(brick, spawnerBricks[2].position, Quaternion.identity);
-        //    brick.GetComponent<Brick>().value = 10;
-        //}
-
-        //for (int d = 0; d < lines; d++)
-        //{
-        //    brick.GetComponent<SpriteRenderer>().color = Color.green;
-        //    spawnerBricks[3].position = new Vector3(spawnerBricks[3].position.x + width + distance, spawnerBricks[3].position.y, spawnerBricks[3].position.z);
-        //    Instantiate(brick, spawnerBricks[3].position, Quaternion.identity);
-        //    brick.GetComponent<Brick>().value = 5;
-        //}
-
-
         for (int i = 0; i < lines; i++)
         {
             brick.GetComponent<SpriteRenderer>().color = Color.cyan;

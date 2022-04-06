@@ -8,8 +8,8 @@ public class Player : MonoBehaviour
 
     public GameObject ball;
 
-   
-    
+    [SerializeField] private GameObject startGame;
+
     private void Initialization()
     {
         ball.SetActive(false);
@@ -43,6 +43,7 @@ public class Player : MonoBehaviour
         if (Input.GetButtonDown("Jump"))
         {
             ball.SetActive(true);
+            startGame.SetActive(false);
             
         }
     }

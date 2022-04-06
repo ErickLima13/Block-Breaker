@@ -18,6 +18,7 @@ public class Brick : MonoBehaviour
         ParticleSystem ps = explosionParticle.GetComponent<ParticleSystem>();
         ParticleSystem.MainModule psmain = ps.main;
         psmain.startColor = spriteRenderer.color;
+
         explosionParticle.Play(true);
         audioSource.PlayOneShot(damage);
         collision.gameObject.GetComponent<SpriteRenderer>().color = spriteRenderer.color;
