@@ -7,7 +7,8 @@ public class Controller : MonoBehaviour
 {
     public GameObject brick;
     public GameObject ball;
-    public GameObject powerUp;
+
+    public PowerUp powerUp;
 
     public Transform[] spawnerBricks;
 
@@ -61,7 +62,7 @@ public class Controller : MonoBehaviour
 
         if(powerUpTime <= 0)
         {
-            powerUp.SetActive(true);
+            powerUp.Disable(true);
             powerUpTime = 10f * level;
         }
 

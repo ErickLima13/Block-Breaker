@@ -22,8 +22,25 @@ public class PowerUp : MonoBehaviour
     private void Initialization()
     {
         image = GetComponent<SpriteRenderer>();
+        SetPowerUpHandler();
+    }
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        Initialization();
+        
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        Movement();
+    }
+
+    private void SetPowerUpHandler()
+    {
         powerIndex = Random.Range(1, 5);
-       
 
         switch (powerIndex)
         {
@@ -42,25 +59,8 @@ public class PowerUp : MonoBehaviour
             case 5:
                 image.sprite = spriteRenderers[1].sprite;
                 break;
-
         }
-
     }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        Initialization();
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-        Movement();
-    }
-
 
     private Vector3 RandomPos()
     {
@@ -73,23 +73,13 @@ public class PowerUp : MonoBehaviour
         {
             audioSource.PlayOneShot(pickUp);
             PowerChoice(powerIndex);
-            Invoke(nameof(Disable), 0.3f);
+            Disable(false);
         }
 
         if(collision.gameObject.TryGetComponent(out DeathZone deathZone))
         {
-            Invoke(nameof(Disable), 0.3f);
+            Disable(false);
         }
-    }
-
-    private void OnDisable()
-    {
-        transform.position = RandomPos();
-    }
-
-    private void OnEnable()
-    {
-        Initialization();
     }
 
     private void PowerChoice( int power)
@@ -121,10 +111,15 @@ public class PowerUp : MonoBehaviour
         print(power);
     }
 
-    private void Disable()
+    public void Disable( bool status)
     {
-        gameObject.SetActive(false);
-       
+        image.enabled = status;
+        transform.position = RandomPos();
+
+        if (status)
+        {
+            SetPowerUpHandler();
+        }
     }
 
     private void Movement()

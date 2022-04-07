@@ -9,11 +9,9 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public int score;
-    public int maxScore;
-
-    public string namePlayer;
-    public string namePlayerBest;
-
+   
+    public string namePlayer = "Player 1";
+   
     public int lives = 3;
 
     public bool isGameOver;
@@ -33,8 +31,6 @@ public class GameManager : MonoBehaviour
         }
 
         instance = this;
-        DontDestroyOnLoad(gameObject);
-        LoadScore();
     }
 
     // Start is called before the first frame update
@@ -64,59 +60,12 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
-        if (score > maxScore)
-        {
-            maxScore = score;
-            namePlayerBest = namePlayer;
-        }
+        
 
-        score = 0;
-
-        SaveScore();
+        score = 0;   
     }
 
 
-    [Serializable]
-    class SaveData
-    {
-        public string namePlayerBest;
-        public int maxScore;
-    }
-
-    public void SaveScore()
-    {
-        SaveData data = new SaveData();
-        data.namePlayerBest = namePlayerBest;
-        data.maxScore = maxScore;
-
-        string json = JsonUtility.ToJson(data,true);
-        File.WriteAllText("Assets/savescore.json", json);
-
-    }
-
-    public void LoadScore()
-    {
-        string path = "Assets/savescore.json";
-        if (File.Exists(path))
-        {
-            string json = File.ReadAllText(path);
-            SaveData data = JsonUtility.FromJson<SaveData>(json);
-
-            namePlayerBest = data.namePlayerBest;
-            maxScore = data.maxScore;
-        }
-    }
-
-    public void ResetScore()
-    {
-        string path = "Assets/savescore.json";
-        if (File.Exists(path))
-        {
-            string json = File.ReadAllText(path);
-            SaveData data = JsonUtility.FromJson<SaveData>(json);
-
-            namePlayerBest = null;
-            maxScore = 0;
-        }
-    }
+  
+   
 }
