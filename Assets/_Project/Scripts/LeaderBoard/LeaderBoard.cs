@@ -15,7 +15,7 @@ public class LeaderBoard : MonoBehaviour
     public void Save()
     {
         data.Sort();
-        string dataRecord = JsonUtility.ToJson(data);
+        string dataRecord = JsonUtility.ToJson(data,true);
         SaveSystem.SaveScore(dataRecord);
     }
 

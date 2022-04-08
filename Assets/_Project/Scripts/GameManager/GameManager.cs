@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.IO;
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
@@ -21,6 +20,7 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
 
     public string playerName;
+
 
     private void Initialization()
     {
@@ -45,7 +45,6 @@ public class GameManager : MonoBehaviour
         if (lives <= 0)
         {
             isGameOver = true;
-            GameOver();
         }
     }
 
@@ -57,15 +56,4 @@ public class GameManager : MonoBehaviour
         playerName = namePlayer;
         lives = 3;
     }
-
-    public void GameOver()
-    {
-        
-
-        score = 0;   
-    }
-
-
-  
-   
 }

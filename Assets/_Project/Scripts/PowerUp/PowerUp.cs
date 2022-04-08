@@ -29,7 +29,6 @@ public class PowerUp : MonoBehaviour
     void Start()
     {
         Initialization();
-        
     }
 
     // Update is called once per frame
@@ -118,7 +117,12 @@ public class PowerUp : MonoBehaviour
 
         if (status)
         {
+            speed = 5f;
             SetPowerUpHandler();
+        }
+        else
+        {
+            speed = 0;
         }
     }
 

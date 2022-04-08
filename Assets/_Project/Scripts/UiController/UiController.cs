@@ -53,6 +53,7 @@ public class UiController : MonoBehaviour
     public void PlayGame()
     {
         GameManager.instance.lives = 3;
+        GameManager.instance.score = 0;
         GameManager.instance.isGameOver = false;
         panelGameOver.SetActive(false);
         SceneManager.LoadScene(1);

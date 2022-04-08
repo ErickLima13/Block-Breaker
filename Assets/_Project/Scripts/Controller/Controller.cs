@@ -110,16 +110,6 @@ public class Controller : MonoBehaviour
             brick.GetComponent<Brick>().value = 5;
 
         }
-
-        //for (int line = 0; line < lines; line++)
-        //{
-        //    for (int column = 0; column < columns; column++)
-        //    {
-        //        Brick brick = Instantiate(brickPrefab, RandomSpawnPos(), Quaternion.identity);
-        //        brick.value = valuesColumn[column];
-        //        brick.GetComponent<SpriteRenderer>().color = colorsColumn[column];
-        //    }
-        //}
     }
 
 
