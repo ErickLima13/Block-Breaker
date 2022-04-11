@@ -10,35 +10,19 @@ public class LeaderBoardController : MonoBehaviour
 
     [SerializeField] private LeaderBoard leaderBoard;
 
-    // Start is called before the first frame update
-    void Start()
+    public void ShowRecord()
     {
-        leaderBoard.Load();
-        
-        
-
-    
+        for (int i = 0; i < leaderBoard.data.playerScores.Count; i++)
+        {
+            rankName[i].text = leaderBoard.data.playerScores[i].namePlayer;
+            rankScore[i].text = leaderBoard.data.playerScores[i].Score.ToString();
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    public void LoadRecord()
     {
-        SaveData record = new SaveData();
-
-        if (GameManager.instance.isGameOver)
-        {
-            record.namePlayer = GameManager.instance.namePlayer;
-            record.Score = GameManager.instance.score;
-
-            leaderBoard.EndGameScore(record);
-        }
-
-        
-
-        for (int i = 0; i < 10; i++)
-        {
-            rankName[i].text = record.namePlayer;
-            rankScore[i].text = record.Score.ToString();
-        }
+        leaderBoard.Load();
+        leaderBoard.data.playerScores.Reverse();
+        ShowRecord();
     }
 }

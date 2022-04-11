@@ -4,14 +4,14 @@ using UnityEngine;
 using System;
 
 [Serializable]
-public class SaveData : IComparable
+public class PlayerScore : IComparable
 {
-    public string namePlayer;
-    public int Score;
+    public string namePlayer = "Empty";
+    public int Score = 1;
 
-    public SaveData() { }
+    public PlayerScore() { }
 
-    public SaveData(string name, int score)
+    public PlayerScore(string name, int score)
     {
         namePlayer = name;
         Score = score;
@@ -19,7 +19,7 @@ public class SaveData : IComparable
 
     public int CompareTo(object obj)
     {
-        var otherPlayerScore = obj as SaveData;
+        var otherPlayerScore = obj as PlayerScore;
 
         if(Score < otherPlayerScore.Score || otherPlayerScore == null)
         {

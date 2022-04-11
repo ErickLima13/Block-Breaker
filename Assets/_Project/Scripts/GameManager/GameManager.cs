@@ -7,13 +7,14 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    public delegate void GameControllHandler();
+    public GameControllHandler onGameOver;
+
     public int score;
    
-    public string namePlayer = "Player 1";
-   
+    public string namePlayer;
+    
     public int lives = 3;
-
-    public bool isGameOver;
 
     public TextMeshProUGUI textName;
 
@@ -21,6 +22,9 @@ public class GameManager : MonoBehaviour
 
     public string playerName;
 
+    public bool gameOver;
+
+    [SerializeField] private LeaderBoard leaderBoard;
 
     private void Initialization()
     {
@@ -31,6 +35,7 @@ public class GameManager : MonoBehaviour
         }
 
         instance = this;
+        
     }
 
     // Start is called before the first frame update
@@ -39,21 +44,26 @@ public class GameManager : MonoBehaviour
         Initialization();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void CountLives()
     {
-        if (lives <= 0)
+        if(lives > 0)
         {
-            isGameOver = true;
+            lives--;
+        }
+        else
+        {
+            onGameOver?.Invoke();
+            gameOver = true;
+            leaderBoard.EndGameScore();
         }
     }
 
     public void PlayGame()
     {
-        SceneManager.LoadScene(1);
-        isGameOver = false;
+        SceneManager.LoadScene("MainScene");
         namePlayer = textName.text;
         playerName = namePlayer;
         lives = 3;
+        score = 0;
     }
 }

@@ -95,7 +95,7 @@ public class PowerUp : MonoBehaviour
                 
                 for (int b = 0; b < 2; b++)
                 {
-                    Instantiate(ball, transform.position, Quaternion.identity);
+                    Instantiate(ball, transform.position + Vector3.up, Quaternion.identity);
                 }
                 break;
             case 4: ball.GetComponent<Ball>().speed -= 2f;

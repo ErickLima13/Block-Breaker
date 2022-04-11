@@ -4,18 +4,18 @@ using UnityEngine;
 
 public class LeaderBoard : MonoBehaviour
 {
-    private List<SaveData> data = new List<SaveData>();
+    public ScoreData data = new ScoreData();
 
     // Start is called before the first frame update
     void Start()
     {
         SaveSystem.Init();
+        
     }
 
     public void Save()
     {
-        data.Sort();
-        string dataRecord = JsonUtility.ToJson(data,true);
+        string dataRecord = JsonUtility.ToJson(data, true);
         SaveSystem.SaveScore(dataRecord);
     }
 
@@ -25,16 +25,21 @@ public class LeaderBoard : MonoBehaviour
 
         if(dataLoaded != null)
         {
-            data = JsonUtility.FromJson<List<SaveData>>(dataLoaded);
+            data = JsonUtility.FromJson<ScoreData>(dataLoaded);
         }
     }
 
-    public void EndGameScore(SaveData dataReceived) // chamar no final da partida
+    public void EndGameScore() 
     {
-        data.Add(dataReceived);
+        PlayerScore currentScore = new PlayerScore(GameManager.instance.namePlayer, GameManager.instance.score);
+
+        data.playerScores.Add(currentScore);
+        Debug.LogWarning("ADDED");
+
+        data.playerScores.Sort();
+        
+
         Save();
+
     }
-
-    
-
 }

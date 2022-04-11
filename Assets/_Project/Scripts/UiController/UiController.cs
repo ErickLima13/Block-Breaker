@@ -19,6 +19,7 @@ public class UiController : MonoBehaviour
     private void Initialization()
     {
         panelGameOver.SetActive(false);
+        GameManager.instance.onGameOver += ShowGameOver;
     }
 
     private void Start()
@@ -28,14 +29,10 @@ public class UiController : MonoBehaviour
 
     private void Update()
     {
-        if (!GameManager.instance.isGameOver)
-        {
-            ShowHud();
-        }
-        else
-        {
-            ShowGameOver();
-        }
+        
+       ShowHud();
+        
+       
     }
 
     private void ShowHud()
@@ -54,9 +51,9 @@ public class UiController : MonoBehaviour
     {
         GameManager.instance.lives = 3;
         GameManager.instance.score = 0;
-        GameManager.instance.isGameOver = false;
+       
         panelGameOver.SetActive(false);
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene("MainScene");
         Time.timeScale = 1;
         AudioListener.pause = false;
     }
@@ -81,10 +78,14 @@ public class UiController : MonoBehaviour
 
     public void MainMenu()
     {
-        SceneManager.LoadScene(0);
-        GameManager.instance.isGameOver = false;
+        SceneManager.LoadScene("Menu");
+
         Time.timeScale = 1;
         AudioListener.pause = false;
     }
 
+    private void OnDisable()
+    {
+        GameManager.instance.onGameOver -= ShowGameOver;
+    }
 }

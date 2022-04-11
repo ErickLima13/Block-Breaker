@@ -23,7 +23,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!GameManager.instance.isGameOver)
+        if (!GameManager.instance.gameOver)
         {
             Movement();
             NewBall();

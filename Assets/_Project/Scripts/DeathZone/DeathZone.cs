@@ -15,7 +15,7 @@ public class DeathZone : MonoBehaviour
         if (collision.gameObject.TryGetComponent(out Ball ball))
         {
             audioSource.PlayOneShot(death);
-            GameManager.instance.lives--;
+            GameManager.instance.CountLives();
             collision.gameObject.SetActive(false);
         }
     }

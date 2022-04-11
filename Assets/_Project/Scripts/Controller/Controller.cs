@@ -5,6 +5,8 @@ using TMPro;
 
 public class Controller : MonoBehaviour
 {
+
+
     public GameObject brick;
     public GameObject ball;
 
@@ -46,7 +48,7 @@ public class Controller : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!GameManager.instance.isGameOver)
+        if (!GameManager.instance.gameOver)
         {
             NewLevel();
         }

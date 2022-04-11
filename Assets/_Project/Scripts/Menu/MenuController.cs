@@ -11,9 +11,12 @@ public class MenuController : MonoBehaviour
 
     [SerializeField] private AudioMixer masterMixer;
 
+
     private void Initialization()
     {
         GameManager.instance.textName = textName;
+
+       
     }
 
     // Start is called before the first frame update
@@ -22,9 +25,13 @@ public class MenuController : MonoBehaviour
         Initialization();
     }
 
+  
+    
+
     public void PlayGame()
     {
         GameManager.instance.PlayGame();
+        GameManager.instance.gameOver = false;
     }
 
     public void ExitGame()
