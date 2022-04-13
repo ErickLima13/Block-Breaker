@@ -7,16 +7,15 @@ using UnityEngine.SceneManagement;
 
 public class MenuController : MonoBehaviour
 {
-    public TextMeshProUGUI textName;
+    [SerializeField] private TextMeshProUGUI textName;
+    [SerializeField] private TMP_InputField inputText;
 
     [SerializeField] private AudioMixer masterMixer;
 
-
     private void Initialization()
     {
+        inputText.characterLimit = 3;
         GameManager.instance.textName = textName;
-
-       
     }
 
     // Start is called before the first frame update
@@ -24,9 +23,6 @@ public class MenuController : MonoBehaviour
     {
         Initialization();
     }
-
-  
-    
 
     public void PlayGame()
     {

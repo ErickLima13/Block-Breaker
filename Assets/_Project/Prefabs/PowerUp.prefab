@@ -125,7 +125,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  powerIndex: 0
   ball: {fileID: 0}
   player: {fileID: 0}
   audioSource: {fileID: 1956339157540686123}

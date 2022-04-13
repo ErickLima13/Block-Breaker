@@ -6,11 +6,9 @@ public class LeaderBoard : MonoBehaviour
 {
     public ScoreData data = new ScoreData();
 
-    // Start is called before the first frame update
     void Start()
     {
         SaveSystem.Init();
-        
     }
 
     public void Save()
@@ -32,14 +30,10 @@ public class LeaderBoard : MonoBehaviour
     public void EndGameScore() 
     {
         PlayerScore currentScore = new PlayerScore(GameManager.instance.namePlayer, GameManager.instance.score);
-
         data.playerScores.Add(currentScore);
         Debug.LogWarning("ADDED");
-
         data.playerScores.Sort();
-        
-
+        data.playerScores.Reverse();
         Save();
-
     }
 }

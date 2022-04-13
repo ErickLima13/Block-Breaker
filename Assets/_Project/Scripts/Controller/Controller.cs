@@ -5,29 +5,27 @@ using TMPro;
 
 public class Controller : MonoBehaviour
 {
+    [SerializeField] private GameObject brick;
+    [SerializeField] private GameObject ball;
 
+    [SerializeField] private PowerUp powerUp;
 
-    public GameObject brick;
-    public GameObject ball;
+    [SerializeField] private Transform[] spawnerBricks;
 
-    public PowerUp powerUp;
+    [SerializeField] private GameObject[] bricks;
 
-    public Transform[] spawnerBricks;
+    [SerializeField] private List<GameObject> bricksList = new List<GameObject>();
 
-    public GameObject[] bricks;
+    [SerializeField] private float width;
+    [SerializeField] private float distance;
 
-    public List<GameObject> bricksList = new List<GameObject>();
+    [SerializeField] private float powerUpTime;
 
-    public float width;
-    public float distance;
+    [SerializeField] private int level = 1;
 
-    public float powerUpTime;
+    [SerializeField] private TextMeshProUGUI levelText;
 
-    public int level = 1;
-
-    public TextMeshProUGUI levelText;
-
-    public int lines;
+    [SerializeField] private int lines;
 
     private void Initialization()
     {
@@ -51,6 +49,7 @@ public class Controller : MonoBehaviour
         if (!GameManager.instance.gameOver)
         {
             NewLevel();
+            PoweUpSpawn();
         }
     }
 
@@ -59,14 +58,6 @@ public class Controller : MonoBehaviour
         bricks = GameObject.FindGameObjectsWithTag("Brick");
 
         levelText.text =  "Level : " + level.ToString();
-
-        powerUpTime -= Time.deltaTime;
-
-        if(powerUpTime <= 0)
-        {
-            powerUp.Disable(true);
-            powerUpTime = 10f * level;
-        }
 
         if (bricks.Length == 0)
         {
@@ -79,6 +70,17 @@ public class Controller : MonoBehaviour
                 bricksList[i].transform.position = RandomSpawnPos();
                 bricksList[i].SetActive(true);
             }
+        }
+    }
+
+    private void PoweUpSpawn()
+    {
+        powerUpTime -= Time.deltaTime;
+
+        if (powerUpTime <= 0)
+        {
+            powerUp.Disable(true);
+            powerUpTime = 10f * level;
         }
     }
 
@@ -113,7 +115,4 @@ public class Controller : MonoBehaviour
 
         }
     }
-
-
-
 }

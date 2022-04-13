@@ -10,8 +10,6 @@ public class Ball : MonoBehaviour
 
     public GameObject player;
 
-    
-
     private void Initialization()
     {
         ballRb = GetComponent<Rigidbody2D>();
@@ -43,7 +41,6 @@ public class Ball : MonoBehaviour
     {
         Vector3 pos = new Vector3(0.04f, -3.5f, 0);
         transform.position = pos;
-        
     }
 
     private void OnEnable()
@@ -51,6 +48,5 @@ public class Ball : MonoBehaviour
         Vector3 pos = new Vector3(player.transform.position.x,-3.5f, 0);
         transform.position = pos;
         ballRb.velocity = Vector2.up * speed;
-        
     }
 }

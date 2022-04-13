@@ -4,13 +4,12 @@ using UnityEngine;
 
 public class PowerUp : MonoBehaviour
 {
-    [Range(0,10)]public float speed;
+    [Range(0,10)] [SerializeField] private float speed;
 
-    public int powerIndex;
+    private int powerIndex;
 
-    public GameObject ball;
-
-    public GameObject player;
+    [SerializeField] private GameObject ball;
+    [SerializeField] private GameObject player;
 
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioClip pickUp;
@@ -92,22 +91,15 @@ public class PowerUp : MonoBehaviour
                 
                 break;
             case 3:
-                
-                for (int b = 0; b < 2; b++)
-                {
-                    Instantiate(ball, transform.position + Vector3.up, Quaternion.identity);
-                }
+                Instantiate(ball, transform.position + Vector3.up, Quaternion.identity);
                 break;
-            case 4: ball.GetComponent<Ball>().speed -= 2f;
-                
+            case 4: 
+                ball.GetComponent<Ball>().speed -= 2f;
                 break;
-            case 5: player.transform.localScale -= Vector3.right;
-                
+            case 5: 
+                player.transform.localScale -= Vector3.right;
                 break;
-
         }
-
-        print(power);
     }
 
     public void Disable( bool status)

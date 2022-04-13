@@ -6,7 +6,7 @@ public class Player : MonoBehaviour
 {
     [Range(0, 20)] public float speed;
 
-    public GameObject ball;
+    [SerializeField] private GameObject ball;
 
     [SerializeField] private GameObject startGame;
 
@@ -20,7 +20,6 @@ public class Player : MonoBehaviour
         Initialization();
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (!GameManager.instance.gameOver)
@@ -28,14 +27,12 @@ public class Player : MonoBehaviour
             Movement();
             NewBall();
         }
-        
     }
 
     private void Movement()
     {
         float horizontalInput = Input.GetAxisRaw("Horizontal");
         transform.Translate(horizontalInput * speed * Time.deltaTime * Vector2.right);
-
     }
 
     private void NewBall()
@@ -44,7 +41,6 @@ public class Player : MonoBehaviour
         {
             ball.SetActive(true);
             startGame.SetActive(false);
-            
         }
     }
 }

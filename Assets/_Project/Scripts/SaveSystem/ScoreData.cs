@@ -6,5 +6,5 @@ using System;
 [Serializable]
 public class ScoreData 
 {
-    public List<PlayerScore> playerScores = new List<PlayerScore>();
+    public List<PlayerScore> playerScores = new List<PlayerScore>(10);
 }

@@ -6,15 +6,15 @@ using UnityEngine.SceneManagement;
 
 public class UiController : MonoBehaviour
 {
-    public GameObject panelGameOver;
-    public GameObject pausePanel;
+    [SerializeField] private GameObject panelGameOver;
+    [SerializeField] private GameObject pausePanel;
 
-    public TextMeshProUGUI ScoreText;
-    public TextMeshProUGUI livesText;
-    public TextMeshProUGUI nameText;
+    [SerializeField] private TextMeshProUGUI ScoreText;
+    [SerializeField] private TextMeshProUGUI livesText;
+    [SerializeField] private TextMeshProUGUI nameText;
 
-    public GameObject pauseButton;
-    public GameObject resumeButton;
+    [SerializeField] private GameObject pauseButton;
+    [SerializeField] private GameObject resumeButton;
 
     private void Initialization()
     {
@@ -29,10 +29,7 @@ public class UiController : MonoBehaviour
 
     private void Update()
     {
-        
-       ShowHud();
-        
-       
+       ShowHud();   
     }
 
     private void ShowHud()
@@ -51,7 +48,6 @@ public class UiController : MonoBehaviour
     {
         GameManager.instance.lives = 3;
         GameManager.instance.score = 0;
-       
         panelGameOver.SetActive(false);
         SceneManager.LoadScene("MainScene");
         Time.timeScale = 1;
@@ -79,7 +75,6 @@ public class UiController : MonoBehaviour
     public void MainMenu()
     {
         SceneManager.LoadScene("Menu");
-
         Time.timeScale = 1;
         AudioListener.pause = false;
     }

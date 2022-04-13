@@ -35,10 +35,8 @@ public class GameManager : MonoBehaviour
         }
 
         instance = this;
-        
     }
 
-    // Start is called before the first frame update
     void Awake()
     {
         Initialization();
@@ -46,7 +44,7 @@ public class GameManager : MonoBehaviour
 
     public void CountLives()
     {
-        if(lives > 0)
+        if(lives > 1)
         {
             lives--;
         }

@@ -121,7 +121,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 10
   player: {fileID: 0}
-  startGame: {fileID: 0}
 --- !u!96 &241952944
 TrailRenderer:
   serializedVersion: 2

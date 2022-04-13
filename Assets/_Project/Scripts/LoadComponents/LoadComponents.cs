@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class LoadComponents : MonoBehaviour
 {
-
     private void Initialization()
     {
         Invoke(nameof(ComponentsLoad), 0.01f);
@@ -21,6 +20,4 @@ public class LoadComponents : MonoBehaviour
     {
         SceneManager.LoadScene("Menu");
     }
-
-
 }

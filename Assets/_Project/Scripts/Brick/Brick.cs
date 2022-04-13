@@ -6,10 +6,10 @@ public class Brick : MonoBehaviour
 {
     public int value;
 
-    public ParticleSystem explosionParticle;
+    [SerializeField] private ParticleSystem explosionParticle;
 
-    public AudioSource audioSource;
-    public AudioClip damage;
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip damage;
 
     [SerializeField] private SpriteRenderer spriteRenderer;
 
@@ -23,7 +23,6 @@ public class Brick : MonoBehaviour
         audioSource.PlayOneShot(damage);
         collision.gameObject.GetComponent<SpriteRenderer>().color = spriteRenderer.color;
         Invoke(nameof(Explosion), 0.3f);
-        
     }
 
     private void Explosion()

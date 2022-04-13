@@ -5,10 +5,8 @@ using UnityEngine;
 
 public class DeathZone : MonoBehaviour
 {
-    public AudioSource audioSource;
-    public AudioClip death;
-
-    //colocar para ser trigger;
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip death;
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
