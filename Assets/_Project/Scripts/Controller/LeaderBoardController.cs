@@ -23,7 +23,7 @@ public class LeaderBoardController : MonoBehaviour
         }
         catch (ArgumentOutOfRangeException)
         {
-             
+            print("list limit exceeded, a score will be replaced.");
         }
     }
 
